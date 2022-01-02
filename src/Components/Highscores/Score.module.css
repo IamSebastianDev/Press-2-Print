@@ -1,0 +1,17 @@
+/** @format */
+
+.container {
+	display: flex;
+	flex-direction: column;
+
+	margin: 0px 12px;
+}
+.date,
+.score {
+	margin: 2px 0px;
+	padding: 2px 0px;
+	font-family: var(--ui-font-fractur);
+	font-weight: 600;
+
+	color: var(--ui-clr-text-gold);
+}
