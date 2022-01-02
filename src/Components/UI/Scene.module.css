@@ -1,0 +1,25 @@
+/** @format */
+
+.scene {
+	/*  Scene constraints are set to a min width of 800px by 600px
+        to forego mobile layouts. The game is developed with those constrains in mind,
+        but should have no trouble in scaling up. */
+
+	min-width: 800px;
+	width: 100vw;
+	min-height: 600px;
+	height: 100vh;
+
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+
+	padding: 40px;
+	box-sizing: border-box;
+
+	background: center / cover no-repeat
+		url('../../assets/images/letters_pixel.jpg');
+}
