@@ -1,0 +1,51 @@
+/** @format */
+
+.setting {
+	margin: 8px 0px;
+	padding: 14px;
+
+	background: var(--ui-clr-button-background);
+	border: 2px solid var(--ui-clr-button-border);
+
+	color: var(--ui-clr-button-text);
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.label {
+	font-size: 20px;
+	font-weight: 600;
+	font-family: var(--ui-font-accessible);
+	margin-right: 12px;
+}
+
+.button__container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	border: 2px solid var(--ui-clr-button-border);
+}
+
+.button__container button {
+	padding: 8px 16px;
+
+	font-size: 20px;
+	font-weight: 600;
+	font-family: var(--ui-font-accessible);
+	letter-spacing: 2px;
+	color: var(--ui-clr-text);
+
+	background: var(--ui-clr-text-dark-shade);
+	border: none;
+	outline: none;
+}
+
+.button__container > .button__active {
+	background: var(--ui-clr-text-dark);
+	color: var(--ui-clr-text-gold);
+}
