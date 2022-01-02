@@ -1,0 +1,28 @@
+/** @format */
+
+.nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+
+	z-index: 1000;
+}
+
+.nav__action_button {
+	background: none;
+	appearance: none;
+	border: none;
+	outline: none;
+
+	padding: 6px;
+	margin: 4px;
+
+	color: var(--ui-clr-text-gold);
+
+	cursor: pointer;
+}
+
+.nav__action_button:hover {
+	color: var(--ui-clr-text);
+}
