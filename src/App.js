@@ -1,5 +1,54 @@
 /** @format */
 
+import React, { useState } from 'react';
+
 import './App.css';
 
-export const App = () => <div></div>;
+import { Navigation } from './Components/Navigation/Navgiation';
+import { Scene } from './Components/UI/Scene';
+import { Menu } from './Components/Menu/Menu';
+import { Board } from './Components/Board/Board';
+import { Options } from './Components/Options/Options';
+import { Highscores } from './Components/Highscores/Highscores';
+
+export const App = () => {
+	const [mode, setMode] = useState(2);
+
+	const setScene = ({ target }) => {
+		setMode(target);
+	};
+
+	/**
+	 * @description method to handle the return to the main menu. This will be the only navigation method, as all other
+	 * scenes are just one level deep. All actions required to return to the menu can go in this method
+	 */
+
+	const returnToMenu = () => {
+		setScene({ target: 0 });
+	};
+
+	const Scenes = [
+		<Scene id="game-menu">
+			<Menu handleNavigation={setScene} />
+		</Scene>,
+		<Scene id="game-board">
+			<Board />
+		</Scene>,
+		<Scene id="game-options">
+			<Options />
+		</Scene>,
+		<Scene id="game-highscores">
+			<Highscores />
+		</Scene>,
+		<Scene id="game-about"></Scene>,
+	];
+
+	return (
+		<div>
+			{mode !== 0 && (
+				<Navigation mode={mode} handleReturnToMenu={returnToMenu} />
+			)}
+			{Scenes[mode]}
+		</div>
+	);
+};
