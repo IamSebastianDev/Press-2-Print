@@ -1,7 +1,7 @@
 /** @format */
 
 :root {
-	--ui-clr-background: #3c1902;
+	--ui-clr-background: rgb(60, 25, 2);
 	--ui-clr-gradient-background: radial-gradient(#3c1902, #281101);
 	--ui-clr-text: rgba(255, 255, 255, 1);
 	--ui-clr-text-shade: rgba(243, 221, 211, 1);
@@ -9,6 +9,13 @@
 	--ui-clr-text-shadow: rgba(53, 58, 71, 1);
 	--ui-clr-text-dark: rgba(53, 58, 71, 1);
 	--ui-clr-text-dark-shade: rgba(69, 78, 94, 1);
+
+	/* Element clrs */
+
+	--ui-clr-element-background: rgba(60, 25, 2, 1);
+	--ui-clr-element-shadow: rgba(53, 58, 71, 1);
+	--ui-clr-element-border: rgba(249, 160, 63, 1);
+	--ui-clr-element-background-paper: rgba(255, 237, 190, 1);
 
 	/* Button colours */
 
