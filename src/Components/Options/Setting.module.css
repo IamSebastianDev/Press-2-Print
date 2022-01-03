@@ -33,6 +33,7 @@
 
 .button__container button {
 	padding: 8px 16px;
+	margin: 0;
 
 	font-size: 20px;
 	font-weight: 600;
