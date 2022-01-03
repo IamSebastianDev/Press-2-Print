@@ -1,18 +1,21 @@
 /** @format */
 .board {
-	height: 100vh;
-	width: 100vw;
-
-	background: red;
+	height: 100%;
+	width: 100%;
 
 	padding: 60px;
+
+	border: 4px solid var(--ui-clr-element-border);
+	box-shadow: inset 4px 4px 0px 0px var(--ui-clr-element-shadow);
+	background: var(--ui-clr-gradient-background);
 
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 4fr;
 	grid-template-areas:
-		'lettertray lettertray'
-		'letterpress leaflet';
+		'typetray .'
+		'printplate leaflet';
+	gap: 16px;
 
 	box-sizing: border-box;
 }
