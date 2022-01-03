@@ -1,0 +1,24 @@
+/** @format */
+
+.plate {
+	padding: 12px;
+	grid-area: printplate;
+
+	background: var(--ui-clr-element-backgroung);
+	border: 2px solid var(--ui-clr-element-shadow);
+	box-shadow: 0px var(--ui-offset-button-shadow) 1px
+			var(--ui-clr-button-shadow),
+		0px calc(var(--ui-offset-button-shadow) * -1) 1px
+			var(--ui-clr-button-shadow),
+		var(--ui-offset-button-shadow) 0px 1px var(--ui-clr-button-shadow),
+		calc(var(--ui-offset-button-shadow) * -1) 0px 1px
+			var(--ui-clr-button-shadow);
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+}

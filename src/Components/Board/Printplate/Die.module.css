@@ -1,0 +1,26 @@
+/** @format */
+
+.die {
+	font-family: var(--ui-font-fractur);
+	font-size: 16px;
+	color: var(--ui-clr-text);
+
+	width: 16px;
+	height: 16px;
+
+	background: var(--ui-clr-element-shadow);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	box-shadow: 0px var(--ui-offset-button-shadow) 1px
+			var(--ui-clr-button-border),
+		0px calc(var(--ui-offset-button-shadow) * -1) 1px
+			var(--ui-clr-button-border),
+		var(--ui-offset-button-shadow) 0px 1px var(--ui-clr-button-border),
+		calc(var(--ui-offset-button-shadow) * -1) 0px 1px
+			var(--ui-clr-button-border);
+
+	border: 2px solid var(--ui-clr-text-dark-shade);
+}
