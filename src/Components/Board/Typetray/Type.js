@@ -2,6 +2,13 @@
 
 import classes from './Type.module.css';
 
-export const Type = ({ children }) => {
-	return <span className={classes.type}>{children}</span>;
+export const Type = ({ children, addDieToPrint }) => {
+	// return <span className={classes.type}>{children}</span>;
+	return (
+		<button
+			onClick={() => addDieToPrint(children)}
+			className={classes.type}>
+			{children}
+		</button>
+	);
 };
