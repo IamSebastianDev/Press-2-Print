@@ -44,13 +44,6 @@
 
 /* resets */
 
-@media (prefers-reduced-motion) {
-	* {
-		transition: none;
-		transform: none;
-	}
-}
-
 html,
 body {
 	padding: 0;
