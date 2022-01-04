@@ -7,6 +7,7 @@
 
 	width: 16px;
 	height: 16px;
+	margin: 2px 2px 2px 2px;
 
 	background: var(--ui-clr-element-shadow);
 
@@ -15,12 +16,34 @@
 	align-items: center;
 
 	box-shadow: 0px var(--ui-offset-button-shadow) 1px
-			var(--ui-clr-button-border),
+			var(--ui-clr-element-background),
 		0px calc(var(--ui-offset-button-shadow) * -1) 1px
-			var(--ui-clr-button-border),
-		var(--ui-offset-button-shadow) 0px 1px var(--ui-clr-button-border),
+			var(--ui-clr-element-background),
+		var(--ui-offset-button-shadow) 0px 1px var(--ui-clr-element-background),
 		calc(var(--ui-offset-button-shadow) * -1) 0px 1px
-			var(--ui-clr-button-border);
+			var(--ui-clr-element-background);
+
+	border: 2px solid var(--ui-clr-text-dark-shade);
+}
+
+.emptyDie {
+	width: 16px;
+	height: 16px;
+	margin: 2px 2px 2px 2px;
+
+	background: var(--ui-clr-element-background);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	box-shadow: 0px var(--ui-offset-button-shadow) 1px
+			var(--ui-clr-element-background),
+		0px calc(var(--ui-offset-button-shadow) * -1) 1px
+			var(--ui-clr-element-background),
+		var(--ui-offset-button-shadow) 0px 1px var(--ui-clr-element-background),
+		calc(var(--ui-offset-button-shadow) * -1) 0px 1px
+			var(--ui-clr-element-background);
 
 	border: 2px solid var(--ui-clr-text-dark-shade);
 }
