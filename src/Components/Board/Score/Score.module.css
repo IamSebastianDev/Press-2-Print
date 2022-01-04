@@ -1,0 +1,30 @@
+/** @format */
+
+.background {
+	padding: 12px;
+	grid-area: score;
+
+	width: 100%;
+	height: 100%;
+
+	font-size: 12px;
+	font-family: var(--ui-font-accessible);
+	font-weight: 600;
+	text-align: center;
+	color: var(--ui-clr-text-gold);
+}
+
+.container {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+
+	margin: 8px 0px;
+}
+
+.text {
+	font-size: 28px;
+	font-family: var(--ui-font-fractur);
+	font-weight: 600;
+	color: var(--ui-clr-text-gold);
+}
