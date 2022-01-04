@@ -36,7 +36,7 @@
 
 .button__button:hover,
 .button__button:focus {
-	transform: translateY(-4px);
+	transform: translateY(2px);
 	background: var(--ui-clr-button-background);
 	border: var(--ui-offset-button-border) solid var(--ui-clr-button-shadow);
 }
