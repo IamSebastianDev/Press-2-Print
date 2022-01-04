@@ -1,0 +1,18 @@
+/** @format */
+
+.container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+	background: var(--ui-clr-element-background);
+
+	border: 2px solid var(--ui-clr-element-shadow);
+	box-shadow: 0px var(--ui-offset-button-shadow) 1px
+			var(--ui-clr-button-shadow),
+		0px calc(var(--ui-offset-button-shadow) * -1) 1px
+			var(--ui-clr-button-shadow),
+		var(--ui-offset-button-shadow) 0px 1px var(--ui-clr-button-shadow),
+		calc(var(--ui-offset-button-shadow) * -1) 0px 1px
+			var(--ui-clr-button-shadow);
+}
