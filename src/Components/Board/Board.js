@@ -2,8 +2,15 @@
 
 import React, { useState, useReducer, useEffect } from 'react';
 
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
+import useSound from 'use-sound';
+import onDropFx from '../../assets/sounds/onDrop.mp3';
+
 import classes from './Board.module.css';
-import phrases from '../../assets/texts/volgate.js';
+// import phrases from '../../assets/texts/volgate.js';
+import phrases from '../../assets/texts/testText.js';
 
 import { Typetray } from './Typetray/Typetray';
 import { Printplate } from './Printplate/Printplate';
@@ -13,8 +20,17 @@ import { Score } from './Score/Score';
 const availableChars = [...new Set(phrases.join(''))];
 
 export const Board = () => {
+	const [playbackRate, setPlaybackRate] = useState(1);
+	const [playOnDrop] = useSound(onDropFx, {
+		sprite: {
+			drop: [0, 200],
+		},
+		playbackRate,
+	});
+
 	const [gameShouldUpdate, setGameShouldUpdate] = useState(false);
 	const [score, setScore] = useState(0);
+	const [scoreDif, setScoreDif] = useState(0);
 
 	const updateGameState = (state, action) => {
 		if (action.type === 'startGame') {
@@ -31,6 +47,9 @@ export const Board = () => {
 			return {
 				...state,
 				hasStarted: false,
+				hasEnded: true,
+				phrase: phrases[0],
+				currentStage: 0,
 			};
 		}
 
@@ -69,6 +88,11 @@ export const Board = () => {
 		}
 
 		if (action.type === 'addToPrintplate') {
+			setPlaybackRate(Math.random() * 0.5 + 0.75);
+			playOnDrop({
+				id: 'drop',
+			});
+
 			return {
 				...state,
 				printed: [...state.printed, action.payload],
@@ -78,56 +102,39 @@ export const Board = () => {
 
 	const [gameState, dispatchGameState] = useReducer(updateGameState, {
 		hasStarted: false,
+		hasEnded: false,
 		roundFinished: false,
-		currentStage: undefined,
+		currentStage: 0,
 		phrase: phrases[0],
 		randomChars: [],
 		activeChar: 0,
 		printed: [],
+		id: '_' + Math.random().toString(36).substring(2, 9),
 	});
 
 	const generateRandomChars = ({ currentChar }) => {
-		let getChar = () => {
-			return availableChars[
+		const difficulty = 3;
+		let getChar = () =>
+			availableChars[
 				Math.floor(Math.random() * availableChars.length) * 1
 			];
+
+		const getRandomChars = () =>
+			[...new Array(difficulty)].map(() => getChar());
+
+		const getRandomArray = ({ currentChar }) => {
+			let randomChars = getRandomChars();
+			randomChars[Math.floor(Math.random() * randomChars.length) * 1] =
+				currentChar;
+
+			return [...new Set(randomChars)].length !== difficulty
+				? getRandomArray({ currentChar })
+				: randomChars;
 		};
 
-		let randomChars = [getChar(), getChar(), getChar()];
+		// check if the
 
-		// check if all characters are unique & not the same as the currentChar
-
-		const filteredChars = randomChars.map((char, index) => {
-			// get a temporary array without the current char
-			let tempArr = randomChars.slice(index);
-
-			// if the rest of the array already has the char or the char is the same as the currentOne, try to get a
-			// new random char
-
-			const getNewChar = (charToReplace) => {
-				let newChar;
-
-				let tempChar = getChar();
-				if (tempChar === charToReplace || tempChar === currentChar) {
-					newChar = getNewChar();
-				} else {
-					newChar = tempChar;
-				}
-
-				return newChar;
-			};
-
-			if (tempArr.includes(currentChar) || char === currentChar) {
-				return getNewChar(char);
-			} else {
-				return char;
-			}
-		});
-
-		filteredChars[Math.floor(Math.random() * filteredChars.length) * 1] =
-			currentChar;
-
-		return filteredChars;
+		return getRandomArray({ currentChar });
 	};
 
 	useEffect(() => {
@@ -182,7 +189,15 @@ export const Board = () => {
 		nextTick();
 	};
 
-	const addDieToPrint = (dieValue) => {
+	const addPoints = (points) => {
+		setScoreDif(points);
+		setScore((curScore) => curScore + points);
+	};
+
+	const addDieToPrint = (dieValue, supposedValue) => {
+		// add points granularly by checking if the dieValue is equal to the value it should have
+		addPoints(supposedValue === dieValue ? 10 : -5);
+
 		dispatchGameState({
 			type: 'addToPrintplate',
 			payload: dieValue,
@@ -191,30 +206,62 @@ export const Board = () => {
 		cleanUpTick();
 	};
 
-	const calculatePoints = () => {
-		let points = gameState.printed
-			.map((elem, index) => (elem === gameState.phrase[index] ? 10 : 0))
-			.reduce((a, b) => a + b);
+	const calculateEndOfRoundPoints = ({ gameState }) => {
+		// time to finish the round in seconds
+		const timeToFinish = (Date.now() - gameState.roundStarted) / 1000;
+		// set 5 seconds for each character
+		const allotedTime = gameState.phrase.length * 5;
 
-		let timeElapsed = (
-			(Date.now() - gameState.roundStarted) /
-			1000
-		).toFixed(0);
+		return Math.floor(allotedTime - timeToFinish);
+	};
 
-		setScore((curState) => curState + points - timeElapsed);
+	const setHighScores = ({ gameState }) => {
+		const curScore = {
+			_id: gameState.id,
+			timestamp: Date.now(),
+			curLevel: gameState.currentStage + 1,
+			levelCount: phrases.length,
+			score,
+		};
+
+		const currentHighscores =
+			JSON.parse(window.localStorage.getItem('p2p-highscores')) || [];
+
+		const scoreIndex = currentHighscores.findIndex(
+			(elem) => elem._id === gameState.id
+		);
+
+		if (scoreIndex !== -1) {
+			currentHighscores[scoreIndex] = curScore;
+		} else {
+			currentHighscores.push(curScore);
+		}
+
+		window.localStorage.setItem(
+			'p2p-highscores',
+			JSON.stringify(currentHighscores)
+		);
 	};
 
 	const nextRound = () => {
+		// add the highscore to the localStorage
+
+		addPoints(calculateEndOfRoundPoints({ gameState }));
+
+		// set highscores
+		setHighScores({ gameState });
+
 		// check if this was the last phrase
 		if (gameState.currentStage === phrases.length) {
 			// return for now, herethe results function needs to go
 
+			dispatchGameState({
+				type: 'endGame',
+			});
+
+			console.log('You won!');
 			return;
 		}
-
-		// call the calculate points function
-
-		calculatePoints();
 
 		dispatchGameState({
 			type: 'nextRound',
@@ -223,20 +270,25 @@ export const Board = () => {
 		setGameShouldUpdate(true);
 	};
 
-	return (
+	return !gameState.hasEnded ? (
 		<div className={classes.board}>
-			<Typetray
-				startGame={startGame}
-				nextRound={nextRound}
-				addDieToPrint={addDieToPrint}
-				{...gameState}
-			/>
+			<DndProvider backend={HTML5Backend}>
+				<Typetray
+					startGame={startGame}
+					nextRound={nextRound}
+					{...gameState}
+				/>
+				<Printplate {...gameState} addDieToPrintPlate={addDieToPrint} />
+			</DndProvider>
 			<Score
 				score={score}
+				scoreDif={scoreDif}
 				currentStage={gameState.currentStage}
-				stages={phrases.length}></Score>
-			<Printplate {...gameState} />
+				stages={phrases.length}
+			/>
 			<Source {...gameState} />
 		</div>
+	) : (
+		<div>You won! Final score: {score}</div>
 	);
 };
