@@ -5,6 +5,8 @@
 	width: 100%;
 	max-width: 800px;
 
+	user-select: none;
+
 	padding: 30px;
 
 	margin: auto;
