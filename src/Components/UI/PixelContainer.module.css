@@ -8,6 +8,9 @@
 	background: var(--ui-clr-element-background);
 
 	border: 2px solid var(--ui-clr-element-shadow);
+	outline: 2px solid var(--ui-clr-text-gold);
+	outline-offset: -4px;
+
 	box-shadow: 0px var(--ui-offset-button-shadow) 1px
 			var(--ui-clr-button-shadow),
 		0px calc(var(--ui-offset-button-shadow) * -1) 1px
