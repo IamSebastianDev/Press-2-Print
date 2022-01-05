@@ -1,6 +1,7 @@
 /** @format */
 
 .background {
+	position: relative;
 	padding: 12px;
 	grid-area: score;
 
@@ -12,6 +13,10 @@
 	font-weight: 600;
 	text-align: center;
 	color: var(--ui-clr-text-gold);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .container {
@@ -27,4 +32,16 @@
 	font-family: var(--ui-font-fractur);
 	font-weight: 600;
 	color: var(--ui-clr-text-gold);
+}
+
+.fadeScore {
+	position: absolute;
+	top: 20%;
+	left: 40%;
+	font-size: 28px;
+	font-family: var(--ui-font-fractur);
+	font-weight: 600;
+	color: var(--ui-clr-text-gold);
+	text-shadow: 1px 1px 1px var(--ui-clr-text-dark);
+	opacity: 0;
 }

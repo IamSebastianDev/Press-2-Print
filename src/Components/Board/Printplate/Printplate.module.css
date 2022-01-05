@@ -6,6 +6,8 @@
 
 	align-self: flex-start;
 
+	background: var(--ui-clr-element-background);
+
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;

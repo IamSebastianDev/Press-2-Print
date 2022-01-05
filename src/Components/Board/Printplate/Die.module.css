@@ -37,6 +37,8 @@
 	justify-content: center;
 	align-items: center;
 
+	flex-grow: 0;
+
 	box-shadow: 0px var(--ui-offset-button-shadow) 1px
 			var(--ui-clr-element-background),
 		0px calc(var(--ui-offset-button-shadow) * -1) 1px
@@ -46,4 +48,5 @@
 			var(--ui-clr-element-background);
 
 	border: 2px solid var(--ui-clr-text-dark-shade);
+	transition: 0.1s ease-out;
 }

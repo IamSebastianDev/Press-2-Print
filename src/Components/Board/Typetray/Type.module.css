@@ -1,6 +1,7 @@
 /** @format */
 
 .type {
+	position: relative;
 	font-family: var(--ui-font-fractur);
 	font-size: 32px;
 	color: var(--ui-clr-text);
@@ -27,6 +28,9 @@
 			var(--ui-clr-button-border);
 
 	border: 2px solid var(--ui-clr-text-dark-shade);
+
+	opacity: 1;
+	transform: none;
 }
 
 .type:hover {
