@@ -11,8 +11,15 @@ import { Board } from './Components/Board/Board';
 import { Options } from './Components/Options/Options';
 import { Highscores } from './Components/Highscores/Highscores';
 
+import { SettingsContext } from './store/settings-context';
+
 export const App = () => {
-	const [mode, setMode] = useState(2);
+	const [mode, setMode] = useState(0);
+
+	const [audio, setAudio] = useState(false);
+	const handleAudio = (value) => {
+		setAudio(value);
+	};
 
 	const setScene = ({ target }) => {
 		setMode(target);
@@ -44,11 +51,15 @@ export const App = () => {
 	];
 
 	return (
-		<div>
-			{mode !== 0 && (
+		<SettingsContext.Provider
+			value={{
+				audio,
+				handleAudio,
+			}}>
+			<div>
 				<Navigation mode={mode} handleReturnToMenu={returnToMenu} />
-			)}
-			{Scenes[mode]}
-		</div>
+				{Scenes[mode]}
+			</div>
+		</SettingsContext.Provider>
 	);
 };
