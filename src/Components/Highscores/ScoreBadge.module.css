@@ -2,13 +2,15 @@
 
 .container {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+
+	font-size: 22px;
 
 	margin: 0px 12px;
 }
 .date,
 .score {
-	margin: 2px 0px;
+	margin: 2px 4px;
 	padding: 2px 0px;
 	font-family: var(--ui-font-fractur);
 	font-weight: 600;

@@ -2,10 +2,10 @@
 
 // import classes from './Highscores.module.css';
 
-import { PixelButton } from '../UI/PixelButton';
+import { PixelContainer } from '../UI/PixelContainer';
 import { Heading } from '../UI/Heading';
 import { List } from '../UI/List';
-import { Score } from './Score';
+import { ScoreBadge } from './ScoreBadge';
 
 export const Highscores = () => {
 	let highscores =
@@ -17,16 +17,23 @@ export const Highscores = () => {
 			<List>
 				{highscores
 					.sort((a, b) => (a.score >= b.score ? -1 : 1))
-					.map(({ date, score }, index) => (
-						<li key={index}>
-							<PixelButton>
-								<Score date={date} score={score} />
-							</PixelButton>
-						</li>
-					))}
+					.map(
+						({ timestamp, score, curLevel, levelCount }, index) => (
+							<li key={index}>
+								<PixelContainer>
+									<ScoreBadge
+										date={timestamp}
+										score={score}
+										level={curLevel}
+										maxLevel={levelCount}
+									/>
+								</PixelContainer>
+							</li>
+						)
+					)}
 				{highscores.length === 0 && (
 					<li>
-						<PixelButton>No scores so far!</PixelButton>
+						<PixelContainer>No scores so far!</PixelContainer>
 					</li>
 				)}
 			</List>
