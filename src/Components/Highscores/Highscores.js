@@ -1,11 +1,10 @@
 /** @format */
 
-// import classes from './Highscores.module.css';
+import classes from './Highscores.module.css';
 
 import { PixelContainer } from '../UI/PixelContainer';
 import { Heading } from '../UI/Heading';
 import { List } from '../UI/List';
-import { ScoreBadge } from './ScoreBadge';
 
 export const Highscores = () => {
 	let highscores =
@@ -18,22 +17,37 @@ export const Highscores = () => {
 				{highscores
 					.sort((a, b) => (a.score >= b.score ? -1 : 1))
 					.map(
-						({ timestamp, score, curLevel, levelCount }, index) => (
+						(
+							{ score, timeStamp, currentStage, maximumStage },
+							index
+						) => (
 							<li key={index}>
 								<PixelContainer>
-									<ScoreBadge
-										date={timestamp}
-										score={score}
-										level={curLevel}
-										maxLevel={levelCount}
-									/>
+									<div className={classes.container}>
+										<span>
+											{new Date(
+												timeStamp
+											).toLocaleString()}
+										</span>
+										<span>Points: {score}</span>
+										<span>
+											Stage {currentStage} /{' '}
+											{maximumStage}
+										</span>
+									</div>
 								</PixelContainer>
 							</li>
 						)
 					)}
 				{highscores.length === 0 && (
 					<li>
-						<PixelContainer>No scores so far!</PixelContainer>
+						<PixelContainer>
+							<span
+								className={classes.container}
+								style={{ justifyContent: 'center' }}>
+								No scores so far!
+							</span>
+						</PixelContainer>
 					</li>
 				)}
 			</List>

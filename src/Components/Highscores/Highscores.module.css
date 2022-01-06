@@ -1,1 +1,15 @@
 /** @format */
+
+.container {
+	width: 100%;
+	min-width: 460px;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	padding: 6px 12px;
+	font-family: var(--ui-font-fractur);
+	font-size: 22px;
+	color: var(--ui-clr-text-gold);
+}
