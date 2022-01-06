@@ -3,15 +3,21 @@
 import React, { useContext } from 'react';
 import { SettingsContext } from '../../store/settings-context';
 
-import useSound from 'use-sound';
-import hoverFx from '../../assets/sounds/onEnterHover.mp3';
-import clickFx from '../../assets/sounds/onClick.mp3';
+import { useSFX } from '../../utils/audio.controller';
+
 import { Circle } from 'react-pangolicons';
 
 import classes from './PixelButton.module.css';
 
-export const PixelButton = ({ handleOnClick = null, children }) => {
+export const PixelButton = ({ onClick = null, children }) => {
 	const settings = useContext(SettingsContext);
+
+	const [playOnHover] = useSFX('onHoverFx', {
+		soundEnabled: settings.audio,
+	});
+	const [playOnClick] = useSFX('onClickFx', {
+		soundEnabled: settings.audio,
+	});
 
 	const attributes = {
 		strokeWidth: 5,
@@ -19,32 +25,21 @@ export const PixelButton = ({ handleOnClick = null, children }) => {
 		size: 18,
 	};
 
-	const onClick = () => {
-		handleOnClick();
-		playOnClick({ id: 'click' });
+	const handleOnClick = () => {
+		onClick();
+		playOnClick();
 	};
-
-	const [playOnHover] = useSound(hoverFx, {
-		playbackRate: 2,
-		soundEnabled: settings.audio,
-	});
-	const [playOnClick] = useSound(clickFx, {
-		sprite: {
-			click: [400, 500],
-		},
-		soundEnabled: settings.audio,
-	});
 
 	return (
 		<button
 			className={
 				classes.button__pixel +
 				' ' +
-				(handleOnClick !== null ? classes.button__button : '')
+				(onClick !== null ? classes.button__button : '')
 			}
 			onFocus={playOnHover}
-			onClick={onClick}
-			onMouseEnter={playOnHover}>
+			onMouseEnter={playOnHover}
+			onClick={handleOnClick}>
 			<Circle {...attributes} />
 			<span className={classes.button__text}>{children}</span>
 			<Circle {...attributes} />
