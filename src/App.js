@@ -15,14 +15,19 @@ import { SettingsContext } from './store/settings-context';
 
 export const App = () => {
 	const [mode, setMode] = useState(0);
+	const setScene = ({ target }) => {
+		setMode(target);
+	};
 
 	const [audio, setAudio] = useState(false);
 	const handleAudio = (value) => {
 		setAudio(value);
 	};
 
-	const setScene = ({ target }) => {
-		setMode(target);
+	const [fonts, setFonts] = useState(true);
+	const handleFonts = (value) => {
+		document.documentElement.classList.toggle('fontsHistoric', value);
+		setFonts(value);
 	};
 
 	/**
@@ -55,6 +60,8 @@ export const App = () => {
 			value={{
 				audio,
 				handleAudio,
+				fonts,
+				handleFonts,
 			}}>
 			<div>
 				<Navigation mode={mode} handleReturnToMenu={returnToMenu} />
