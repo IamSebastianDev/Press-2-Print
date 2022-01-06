@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { SettingsContext } from '../../store/settings-context';
 
 // import classes from './Options.module.css';
@@ -12,10 +12,6 @@ import { Setting } from './Setting';
 export const Options = () => {
 	const ctx = useContext(SettingsContext);
 
-	const handleAudio = ({ setting }) => {
-		ctx.handleAudio(setting);
-	};
-
 	return (
 		<div>
 			<Heading
@@ -26,9 +22,17 @@ export const Options = () => {
 				<li>
 					<Setting
 						id="audio"
-						handler={handleAudio}
-						inital={ctx.audio}>
-						Sounds
+						handler={ctx.handleAudio}
+						state={ctx.audio}>
+						Enable sounds?
+					</Setting>
+				</li>
+				<li>
+					<Setting
+						id="fonts"
+						handler={ctx.handleFonts}
+						state={ctx.fonts}>
+						Use historic fonts?
 					</Setting>
 				</li>
 			</List>

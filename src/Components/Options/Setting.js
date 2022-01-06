@@ -1,20 +1,23 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import useSound from 'use-sound';
+import onToggleFx from '../../assets/sounds/onToggle.mp3';
+import { SettingsContext } from '../../store/settings-context';
 
 import classes from './Setting.module.css';
 
-export const Setting = ({ handler, id, children, inital }) => {
-	const [enabled, setEnabled] = useState(inital);
+export const Setting = ({ handler, id, children, state }) => {
+	const { audio } = useContext(SettingsContext);
 
-	/**
-	 * @todo: Save settings in local storage and retrieve them from there
-	 */
+	const [play] = useSound(onToggleFx, {
+		soundEnabled: audio,
+	});
 
 	const dispatchSetting = ({ setting }) => {
+		play();
 		// call the handler method
-		setEnabled(setting);
-		handler({ setting });
+		handler(setting);
 	};
 
 	return (
@@ -22,7 +25,7 @@ export const Setting = ({ handler, id, children, inital }) => {
 			<span className={classes.label}>{children}</span>
 			<div className={classes.button__container}>
 				<button
-					className={enabled ? classes.button__active : ''}
+					className={state ? classes.button__active : ''}
 					onClick={() => {
 						dispatchSetting({ setting: true });
 					}}>
@@ -32,7 +35,7 @@ export const Setting = ({ handler, id, children, inital }) => {
 					onClick={() => {
 						dispatchSetting({ setting: false });
 					}}
-					className={!enabled ? classes.button__active : ''}>
+					className={!state ? classes.button__active : ''}>
 					Off
 				</button>
 			</div>

@@ -3,8 +3,10 @@
 import React from 'react';
 
 export const SettingsContext = React.createContext({
-	sound: false,
+	audio: false,
+	handleAudio: () => {},
 	animation: true,
-	betterFonts: false,
+	fonts: true,
+	handleFonts: () => {},
 	betterResolution: false,
 });
