@@ -1,22 +1,20 @@
 /** @format */
 
 import React, { useContext } from 'react';
-import useSound from 'use-sound';
-import onToggleFx from '../../assets/sounds/onToggle.mp3';
-import { SettingsContext } from '../../store/settings-context';
+import { useSFX } from '../../Scripts/Audio.controller';
+import { SettingsContext } from '../../Store/Settings.context';
 
 import classes from './Setting.module.css';
 
 export const Setting = ({ handler, id, children, state }) => {
 	const { audio } = useContext(SettingsContext);
 
-	const [play] = useSound(onToggleFx, {
+	const [playOnToggle] = useSFX('onToggleFx', {
 		soundEnabled: audio,
 	});
 
 	const dispatchSetting = ({ setting }) => {
-		play();
-		// call the handler method
+		playOnToggle();
 		handler(setting);
 	};
 

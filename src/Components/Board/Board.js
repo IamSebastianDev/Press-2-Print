@@ -1,8 +1,8 @@
 /** @format */
 
 import React, { useState, useReducer, useContext, useEffect } from 'react';
-import { SettingsContext } from '../../store/settings-context';
-import { useSFX } from '../../utils/audio.controller';
+import { SettingsContext } from '../../Store/Settings.context';
+import { useSFX } from '../../Scripts/Audio.controller';
 
 // import React components
 import { PixelContainer } from '../UI/PixelContainer';

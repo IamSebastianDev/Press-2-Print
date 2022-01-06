@@ -1,9 +1,9 @@
 /** @format */
 
 import React, { useContext } from 'react';
-import { SettingsContext } from '../../store/settings-context';
+import { SettingsContext } from '../../Store/Settings.context';
 
-import { useSFX } from '../../utils/audio.controller';
+import { useSFX } from '../../Scripts/Audio.controller';
 
 import { Circle } from 'react-pangolicons';
 

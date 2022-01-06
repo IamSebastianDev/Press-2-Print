@@ -11,7 +11,7 @@ import { Board } from './Components/Board/Board';
 import { Options } from './Components/Options/Options';
 import { Highscores } from './Components/Highscores/Highscores';
 
-import { SettingsContext } from './store/settings-context';
+import { SettingsContext } from './Store/Settings.context';
 
 export const App = () => {
 	const [mode, setMode] = useState(0);

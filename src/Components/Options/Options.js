@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useContext } from 'react';
-import { SettingsContext } from '../../store/settings-context';
+import { SettingsContext } from '../../Store/Settings.context';
 
 // import classes from './Options.module.css';
 

@@ -1,11 +1,11 @@
 /** @format */
 
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { ChevronLeft } from 'react-pangolicons';
 import { VolumeMute, VolumeHigh } from 'react-pangolicons';
 
-import { SettingsContext } from '../../store/settings-context';
+import { SettingsContext } from '../../Store/Settings.context';
 
 import classes from './Navigation.module.css';
 
