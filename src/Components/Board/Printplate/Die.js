@@ -2,15 +2,18 @@
 
 import classes from './Die.module.css';
 
-export const Die = ({ children, empty, isOver }) => {
+export const Die = ({ children, isEmpty = false, isOver }) => {
 	return (
 		<span
 			style={{
 				borderColor: isOver
 					? 'var(--ui-clr-text-gold)'
-					: 'var(--ui-clr-text-dark-shade)',
+					: 'var(--ui-clr-text-dark)',
 			}}
-			className={!empty ? classes.die : classes.emptyDie}>
+			className={[
+				classes.die,
+				!isEmpty ? classes.filled : classes.empty,
+			].join(' ')}>
 			{children}
 		</span>
 	);

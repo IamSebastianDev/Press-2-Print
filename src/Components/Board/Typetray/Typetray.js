@@ -1,39 +1,30 @@
 /** @format */
 
-import classes from './Typetray.module.css';
 import { Type } from './Type';
 import { PixelButton } from '../../UI/PixelButton';
-import { PixelContainer } from '../../UI/PixelContainer';
+
+import classes from './Typetray.module.css';
 
 export const Typetray = ({
-	randomChars = [],
 	hasStarted,
-	roundFinished,
-	startGame,
-	nextRound,
-	addDieToPrint,
+	roundHasFinished,
+	randomChars = [],
+	onStartGame,
+	onNextRound,
 }) => {
 	return (
-		<PixelContainer gridArea="typetray" flexDirection="row">
-			<div className={classes.tray}>
-				{!hasStarted && (
-					<PixelButton handleOnClick={startGame}>
-						Start game!
-					</PixelButton>
-				)}
-				{hasStarted && roundFinished && (
-					<PixelButton handleOnClick={nextRound}>
-						Print line!
-					</PixelButton>
-				)}
-				{hasStarted &&
-					!roundFinished &&
-					randomChars.map((char, index) => (
-						<Type addDieToPrint={addDieToPrint} key={Math.random()}>
-							{char.toLowerCase()}
-						</Type>
-					))}
-			</div>
-		</PixelContainer>
+		<div className={classes.tray}>
+			{!hasStarted && (
+				<PixelButton onClick={onStartGame}>Start game!</PixelButton>
+			)}
+			{hasStarted && roundHasFinished && (
+				<PixelButton onClick={onNextRound}>Print line!</PixelButton>
+			)}
+			{hasStarted &&
+				!roundHasFinished &&
+				randomChars.map((char) => (
+					<Type key={Math.random()}>{char.toLowerCase()}</Type>
+				))}
+		</div>
 	);
 };

@@ -1,27 +1,30 @@
 /** @format */
 
-import { PixelContainer } from '../../UI/PixelContainer';
 import classes from './Source.module.css';
 
-export const Source = ({ hasStarted, phrase, activeChar = 0 }) => {
-	const chars = [...phrase];
+export const Source = ({
+	hasStarted,
+	phrases,
+	currentStage,
+	activeChar = 0,
+}) => {
+	// spread all characters of the current phrase
+	const chars = [...phrases[currentStage]];
 
 	return (
-		<PixelContainer gridArea="leaflet" flexDirection="column">
-			<div className={classes.background}>
-				{hasStarted &&
-					chars.map((elem, index) => (
-						<span
-							key={index}
-							className={
-								index === activeChar
-									? classes.charActive
-									: classes.char
-							}>
-							{elem.toLowerCase()}
-						</span>
-					))}
-			</div>
-		</PixelContainer>
+		<div className={classes.background}>
+			{hasStarted &&
+				chars.map((elem, index) => (
+					<span
+						key={index}
+						className={
+							index === activeChar
+								? classes.charActive
+								: classes.char
+						}>
+						{elem.toLowerCase()}
+					</span>
+				))}
+		</div>
 	);
 };
