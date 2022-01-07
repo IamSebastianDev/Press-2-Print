@@ -10,6 +10,7 @@ import { Menu } from './Components/Menu/Menu';
 import { Board } from './Components/Board/Board';
 import { Options } from './Components/Options/Options';
 import { Highscores } from './Components/Highscores/Highscores';
+import { About } from './Components/About/About';
 
 import { SettingsContext } from './Store/Settings.context';
 
@@ -52,7 +53,9 @@ export const App = () => {
 		<Scene id="game-highscores">
 			<Highscores />
 		</Scene>,
-		<Scene id="game-about"></Scene>,
+		<Scene id="game-about">
+			<About />
+		</Scene>,
 	];
 
 	return (

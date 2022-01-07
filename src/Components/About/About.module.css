@@ -1,0 +1,39 @@
+/** @format */
+
+.container {
+	padding: 0 16px;
+
+	text-align: left;
+	color: var(--ui-clr-text);
+	font-weight: 400;
+}
+
+.container h3 {
+	font-family: var(--ui-fonts-fractur);
+	color: var(--ui-clr-text-gold);
+	text-align: center;
+	margin: 12px 0;
+}
+
+.container p {
+	padding: 8px 0;
+}
+
+.container a {
+	color: var(--ui-clr-text);
+}
+
+.container a:hover {
+	color: var(--ui-clr-text-gold);
+}
+
+.social {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-bottom: 24px;
+}
+
+.social a {
+	margin: 0 16px;
+}
