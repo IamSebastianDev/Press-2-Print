@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import { SettingsContext } from '../../Store/Settings.context';
 
 import { useSFX } from '../../Scripts/Audio.controller';
+import { joinClassNames as cls } from '../../Scripts/JoinClasses.utility';
 
 import { Circle } from 'react-pangolicons';
 
@@ -32,11 +33,10 @@ export const PixelButton = ({ onClick = null, children }) => {
 
 	return (
 		<button
-			className={
-				classes.button__pixel +
-				' ' +
-				(onClick !== null ? classes.button__button : '')
-			}
+			className={cls(
+				classes.button__pixel,
+				onClick !== null ? classes.button__button : ''
+			)}
 			onFocus={playOnHover}
 			onMouseEnter={playOnHover}
 			onClick={handleOnClick}>
