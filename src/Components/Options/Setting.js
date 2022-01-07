@@ -6,7 +6,7 @@ import { SettingsContext } from '../../Store/Settings.context';
 
 import classes from './Setting.module.css';
 
-export const Setting = ({ handler, id, children, state }) => {
+export const Setting = ({ handler, id, children, state, description }) => {
 	const { audio } = useContext(SettingsContext);
 
 	const [playOnToggle] = useSFX('onToggleFx', {
@@ -20,7 +20,10 @@ export const Setting = ({ handler, id, children, state }) => {
 
 	return (
 		<div id={id} className={classes.setting}>
-			<span className={classes.label}>{children}</span>
+			<div className={classes.text__container}>
+				<span className={classes.label}>{children}</span>
+				<span>{description}</span>
+			</div>
 			<div className={classes.button__container}>
 				<button
 					className={state ? classes.button__active : ''}

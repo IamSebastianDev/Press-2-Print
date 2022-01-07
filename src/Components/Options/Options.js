@@ -23,7 +23,8 @@ export const Options = () => {
 					<Setting
 						id="audio"
 						handler={ctx.handleAudio}
-						state={ctx.audio}>
+						state={ctx.audio}
+						description="You can enable some sounds here.">
 						Enable sounds?
 					</Setting>
 				</li>
@@ -31,7 +32,8 @@ export const Options = () => {
 					<Setting
 						id="fonts"
 						handler={ctx.handleFonts}
-						state={ctx.fonts}>
+						state={ctx.fonts}
+						description="They're harder to read but more historically accurate (and fun).">
 						Use historic fonts?
 					</Setting>
 				</li>
