@@ -22,4 +22,6 @@
 
 	background: center / cover no-repeat
 		url('../../assets/images/letters_pixel.jpg');
+
+	overflow: scroll;
 }
