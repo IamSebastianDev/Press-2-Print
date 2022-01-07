@@ -1,14 +1,26 @@
 /** @format */
 
+import { useState, useEffect } from 'react/cjs/react.development';
+
 import classes from './Highscores.module.css';
 
 import { PixelContainer } from '../UI/PixelContainer';
 import { Heading } from '../UI/Heading';
 import { List } from '../UI/List';
+import { CircleX } from 'react-pangolicons';
 
 export const Highscores = () => {
-	let highscores =
-		JSON.parse(window.localStorage.getItem('p2p-highscores')) || [];
+	const [highscores, setHighscores] = useState(
+		JSON.parse(window.localStorage.getItem('p2p-highscores')) || []
+	);
+
+	const handleDeleteHighscore = (id) => {
+		const filteredScores = highscores.filter((score) => score.id !== id);
+		localStorage.setItem('p2p-highscores', JSON.stringify(filteredScores));
+		setHighscores(
+			JSON.parse(window.localStorage.getItem('p2p-highscores')) || []
+		);
+	};
 
 	return (
 		<div>
@@ -18,7 +30,13 @@ export const Highscores = () => {
 					.sort((a, b) => (a.score >= b.score ? -1 : 1))
 					.map(
 						(
-							{ score, timeStamp, currentStage, maximumStage },
+							{
+								score,
+								timeStamp,
+								currentStage,
+								maximumStage,
+								id,
+							},
 							index
 						) => (
 							<li key={index}>
@@ -34,6 +52,12 @@ export const Highscores = () => {
 											Stage {currentStage} /{' '}
 											{maximumStage}
 										</span>
+										<button
+											onClick={() => {
+												handleDeleteHighscore(id);
+											}}>
+											<CircleX></CircleX>
+										</button>
 									</div>
 								</PixelContainer>
 							</li>
