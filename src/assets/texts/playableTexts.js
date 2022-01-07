@@ -1,11 +1,14 @@
 /** @format */
 
-import test from './testText';
-import volgate from './volgate';
+import debug from './debug';
+import vulgate from './vulgate';
 
 const playableTexts = {
-	test,
-	volgate,
+	debug,
+	vulgate,
 };
 
+const activeText = playableTexts.vulgate;
+
 export default playableTexts;
+export { activeText };
