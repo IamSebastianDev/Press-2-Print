@@ -42,6 +42,6 @@ export const Menu = ({ handleNavigation }) => (
 					About
 				</PixelButton>
 			</li>
-		</List>
+		</List>	
 	</div>
 );
