@@ -1,6 +1,7 @@
 /** @format */
 
 import classes from './Source.module.css';
+import { TutorialText } from '../../UI/TutorialText';
 
 export const Source = ({
 	hasStarted,
@@ -25,6 +26,7 @@ export const Source = ({
 						{elem.toLowerCase()}
 					</span>
 				))}
+			{!hasStarted && <TutorialText />}
 		</div>
 	);
 };

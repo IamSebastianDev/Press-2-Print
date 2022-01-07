@@ -1,0 +1,12 @@
+/** @format */
+
+.text {
+	font-family: var(--ui-font-accessible);
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.highlighted {
+	color: var(--ui-clr-text-gold);
+	font-weight: 600;
+}

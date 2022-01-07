@@ -9,7 +9,7 @@
 	background: center / cover no-repeat
 		url(../../../assets/images/paper-pixel.png);
 
-	font-size: 42px;
+	font-size: var(--ui-font-handwritten-size);
 	font-weight: 600;
 	font-family: var(--ui-font-handwritten);
 	letter-spacing: 2px;
