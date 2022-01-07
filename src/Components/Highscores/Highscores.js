@@ -1,6 +1,6 @@
 /** @format */
 
-import { useState, useEffect } from 'react/cjs/react.development';
+import React, { useState } from 'react';
 
 import classes from './Highscores.module.css';
 
