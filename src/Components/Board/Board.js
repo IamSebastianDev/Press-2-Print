@@ -15,11 +15,11 @@ import classes from './Board.module.css';
 
 // import and distribute the texts
 
-import playableTexts from '../../assets/texts/playableTexts';
+import playableTexts, { activeText } from '../../assets/texts/playableTexts';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-const phrases = playableTexts.test;
+const phrases = activeText;
 
 // generate a set of existing characters out of the supplied text
 const availableChars = [...new Set(phrases.join(''))];
