@@ -3,14 +3,15 @@
 import React, { useContext } from 'react';
 
 import { ChevronLeft } from 'react-pangolicons';
-import { VolumeMute, VolumeHigh } from 'react-pangolicons';
+import { VolumeMute, VolumeHigh, Italic } from 'react-pangolicons';
 
 import { SettingsContext } from '../../Store/Settings.context';
 
 import classes from './Navigation.module.css';
 
 export const Navigation = ({ mode, handleReturnToMenu }) => {
-	const ctx = useContext(SettingsContext);
+	const { audio, fonts, handleAudio, handleFonts } =
+		useContext(SettingsContext);
 
 	return (
 		<nav className={classes.nav}>
@@ -22,16 +23,33 @@ export const Navigation = ({ mode, handleReturnToMenu }) => {
 				</button>
 			)}
 			<button
-				style={{ marginLeft: 'auto' }}
+				style={{
+					marginLeft: 'auto',
+					color: audio
+						? 'var(--ui-clr-text-gold)'
+						: 'var(--ui-clr-text-dark-shade)',
+				}}
 				className={classes.nav__action_button}
 				onClick={() => {
-					ctx.handleAudio(!ctx.audio);
+					handleAudio(!audio);
 				}}>
-				{ctx.audio ? (
+				{audio ? (
 					<VolumeHigh strokeWidth={2} />
 				) : (
 					<VolumeMute strokeWidth={2} />
 				)}
+			</button>
+			<button
+				style={{
+					color: fonts
+						? 'var(--ui-clr-text-gold)'
+						: 'var(--ui-clr-text-dark-shade)',
+				}}
+				className={classes.nav__action_button}
+				onClick={() => {
+					handleFonts(!fonts);
+				}}>
+				<Italic strokeWidth={2} />
 			</button>
 		</nav>
 	);
