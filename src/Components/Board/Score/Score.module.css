@@ -37,7 +37,8 @@
 .fadeScore {
 	position: absolute;
 	top: 20%;
-	left: 40%;
+	left: 35%;
+	text-align: right;
 	font-size: 28px;
 	font-family: var(--ui-font-fractur);
 	font-weight: 600;

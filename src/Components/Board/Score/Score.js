@@ -20,14 +20,15 @@ export const Score = ({
 	// dispatch the animation if the score, or the scoreDifference changes
 
 	useEffect(() => {
-		spring.start({
-			opacity: 0,
-			transform: 'translateY(-50px)',
-			from: { opacity: 1, transform: 'translateY(0px)' },
-			config: {
-				tension: 90,
-			},
-		});
+		scoreDifference !== 0 &&
+			spring.start({
+				opacity: 0,
+				transform: 'translateY(-50px)',
+				from: { opacity: 1, transform: 'translateY(0px)' },
+				config: {
+					tension: 90,
+				},
+			});
 	}, [scoreDifference, score, spring]);
 
 	return !hasEnded ? (
@@ -38,7 +39,7 @@ export const Score = ({
 					...fadeOut,
 					color: scoreDifference > 0 ? 'green' : 'red',
 				}}>
-				{scoreDifference}
+				{(scoreDifference > 0 ? '+' : '') + scoreDifference}
 			</animated.span>
 			<div className={classes.container}>
 				<span className={classes.text}>Points: {score}</span>
